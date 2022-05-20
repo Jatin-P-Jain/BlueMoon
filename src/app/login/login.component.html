@@ -1,0 +1,94 @@
+
+<!-- Flexbox container for aligning the toasts -->
+<div class="container-fluid my-2">
+    <div class="container-fluid float-start my-4" style="display: inline-block; position: absolute;">
+        <img src="../../assets/images/logo.png" alt="Logo" style="width: 15%;">
+    </div>
+    <div class="container-fluid float-start " style="width: 40%; display: inline-block; margin-top: 7%;">
+        <h2 class="text-primary">Log In</h2>
+
+        <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+            <fieldset class="fieldset-border rounded mt-3 mb-3">
+                <legend class="float-none w-auto mb-0 ms-3" style="font-size: 100%;">E-mail</legend>
+                <div class="input-group">
+                    <input id="emailaddress" formControlName="email" type="email" class="form-control"
+                        placeholder="abc@mail.com" aria-label="Email" aria-describedby="basic-addon1"
+                        style="border-right: none;">
+                    <span class="input-group-text" id="basic-addon1" style="border-left: none; background: none;"><i
+                            class="bi bi-envelope-fill h4" style="margin-bottom: unset;"></i></span>
+                </div>
+            </fieldset>
+            <fieldset class="fieldset-border rounded">
+                <legend class="float-none w-auto mb-0 ms-3" style="font-size: 100%;">Password</legend>
+                <div class="input-group">
+                    <input formControlName="password" [type]="showPasswordFlag ? 'text': 'password'" #password
+                        class="form-control" placeholder="........." aria-label="Password"
+                        aria-describedby="basic-addon1" style="border-right: none;">
+                    <span class="input-group-text" id="basic-addon1" style="border-left: none; background: none;"><i
+                            [class]="showPasswordFlag? 'bi bi-eye-slash-fill h4' : 'bi bi-eye-fill h4'"
+                            style="margin-bottom: unset; cursor: pointer;" (click)="showPassword()"></i></span>
+                </div>
+            </fieldset>
+            <span class="float-end"><a style="color: #000080; cursor: pointer; text-decoration: none;">Forgot
+                    Password?</a></span>
+            <button type="submit" class="btn btn-primary mt-3 mb-3"
+                style="background-color: #000080; border-color: #000080; width: 100%;">Login</button>
+        </form>
+        <p class="text-center">Dont't have an account yet? <span class="fw-bolder"><a [routerLink]="['/signup']"
+                    style="color: #000080; cursor: pointer; text-decoration: none;">Sign Up</a></span></p>
+        <div class="row">
+            <div class="col-5">
+                <hr>
+            </div>
+            <div class="col-2">
+                <p class="text-muted text-center">or</p>
+            </div>
+            <div class="col-5">
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <a class="btn btn-outline-dark" href="/users/googleauth" role="button"
+                    style="text-transform:none; width: 100%">
+                    <img width="20px" style="margin-bottom:3px; margin-right:5px;" alt="Google sign-in"
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                    Log In with Google
+                </a>
+            </div>
+        </div>
+        <div *ngIf="status=='Error'" class="alert alert-danger mt-3" role="alert">
+            {{errorMessage}}
+        </div>
+    </div>
+    <div class="card float-end" style="display: inline-block; height: 98vh; width: 55%
+    ; background: rgba(255, 81, 0, 0.1);
+border-radius: 30px; overflow: hidden;">
+        <img src="../../assets/images/Abstract_Lines.png" class="card-img-top" alt="..."
+            style="position: relative; max-width: 100%; max-height: 100%;">
+        <div class="card-body" style="position: absolute; top: 25%; left: 5%;">
+            <h1 class="card-title fw-bolder" style="width: 60%; font-family: 'Inter',sans-serif;
+            font-weight: 700;
+            font-size: 64px;
+            line-height: 110%;">Welcome To TaskGen</h1>
+            <p class="card-text my-4" style="width: 80%; color: rgba(26, 52, 71, 0.7);">Vitae ut tempore. Molestiae
+                blanditiis quasi voluptas dolor ullam quasi voluptatem
+                odio. Sed deserunt impedit assumenda non corrupti debitis consequatur temporibus.</p>
+            <div class="row">
+                <div class="col">
+                    <div class="agents-dp"><img src="../../assets/images/Male1.png"></div>
+                    <div class="agents-dp"><img src="../../assets/images/Male2.png"></div>
+                    <div class="agents-dp"><img src="../../assets/images/Female1.png"></div>
+                    <div class="agents-dp"><img src="../../assets/images/Female2.png"></div>
+                    <style>
+                        #agents-text:hover {
+                            text-decoration: underline;
+                        }
+                    </style>
+                    <span class="fw-bolder" style="color: #000080; cursor: pointer;"><a id="agents-text">3k+ agents have
+                            joined us, now it’s your turn!</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

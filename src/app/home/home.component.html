@@ -1,0 +1,55 @@
+<div *ngIf="authError" class="" style=" position: absolute; height: 100%; width: 99%;">
+    <div class="alert alert-dark text-center" role="alert"
+        style="position: relative; top: 50%; left: 50%; width: 30%; transform: translate(-50%,-50%);">
+        {{ authErrorMessage }}
+    </div>
+</div>
+<div class="backImg">
+    <div *ngIf="!authError" class="nav_panel">
+        <div class="container-fluid float-start"
+            style="width: 20%; height: 100vh; padding: 0%; background-color: #0037b80e;">
+            <div class="container-fluid float-start my-4" style="display: inline-block; position: absolute;">
+                <img src="../../assets/images/logo.png" alt="Logo" style="width: 15%;">
+            </div>
+            <!-- <div class="alert alert-danger" style="border: 1px solid blue;"><i class="bi bi-command"></i>Dashboard</div> -->
+            <ul class="navbar-nav" style="margin-top: 30%; width: 100%;">
+                <li class="nav-item">
+                    <button class="btn" (click)="dashboard()" [ngClass]="isDashboard?'active-navTab':'btn'"><span class="tab-icon"><i class="bi bi-command"></i></span>Dashboard</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn" (click)="content()" [ngClass]="isContentHub?'active-navTab':'btn'"><span class="tab-icon"><i class="bi bi-folder"></i></span>Content Hub</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn" (click)="conversations()" [ngClass]="isConversations?'active-navTab':'btn'"><span class="tab-icon"><i class="bi bi-chat"></i></span>Conversations</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn" (click)="contacts()" [ngClass]="isContacts?'active-navTab':'btn'"><span class="tab-icon"><i class="bi bi-people"></i></span>Contacts</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn" (click)="compose()" [ngClass]="isCompose?'active-navTab':'btn'"><span class="tab-icon"><i class="bi bi-send"></i></span>Compose</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn" (click)="logout()" [ngClass]="isLogout?'active-navTab':'btn'"><span class="tab-icon"><i
+                                class="bi bi-box-arrow-left"></i></span>Logout</button>
+                </li>
+            </ul>
+            <div class="pro-card">
+                <img class="logo_small" src="../../assets/images/logo_small.png" alt="Logo" style="width: 25%; border-radius: 11px;">
+                <p class="text-center" style="color: white; font-weight: 400;">TaskGen</p>
+                <p class="text-center text-muted" style="width: 70%; margin-left: 15%; margin-bottom: 3%;">Get access to all features</p>
+                <button class="pro-btn">Get Pro</button>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid float-start" style="width: 80%; height: 100vh;">
+    <router-outlet></router-outlet>
+    </div>
+
+    <!-- <p>Hello</p>
+        <label class="switch ms-3" style="width: 20%; height: 20%;">
+            <input type="checkbox">
+            <span class="slider round rounded-pill"><i class="bi bi-moon-fill fw-bolder fs-5 ms-3"
+                    style="color: rgba(0, 40, 132);"></i><i class="bi bi-brightness-low-fill fw-bolder ms-3"
+                    style="font-size: 150%; color: rgba(0, 40, 132);"></i></span>
+        </label> -->
+</div>

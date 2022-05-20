@@ -1,0 +1,133 @@
+.backImg {
+    /* background: url('../../assets/images/back.png') no-repeat center center fixed; */
+    background: linear-gradient(45deg, rgba(232, 237, 255, 0.56) 100%, rgba(226, 226, 255, 0.71) 100%, rgba(210, 213, 255, 0.59) 100%);
+    background-image: url('../../assets/images/back.png') center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100vh;
+}
+.tab a {
+    cursor: pointer;
+}
+
+.tab-icon {
+    margin-right: 10%;
+    margin-left: 10%;
+    font-size: 110%;
+}
+
+.nav-item {
+    margin-top: 1%;
+    width: 100%;
+}
+
+.btn {
+    background: none;
+    color: #000080;
+    width: 100%;
+    text-align: left;
+    font-weight: 600;
+    border-right: 5px solid #0037b80e;
+    box-shadow: none;
+}
+.active-navTab {
+    background: none;
+    width: 100%;
+    text-align: left;
+    font-weight: 600;
+    color: #FF4B01;
+    box-shadow: none;
+    border-right: 5px solid #FF4B01;
+}
+.pro-card {
+    margin-left: 15%;
+    margin-top: 10%;
+    width: 70%;
+    height: 35%;
+    background-image: url('../../assets/images/pro_back.png');
+    background-repeat: no-repeat;
+    border-radius: 10%;
+    
+}
+.logo_small{
+    margin-top: 10%;
+    margin-left: 36%;
+}
+.pro-btn{
+    border: 2px solid white;
+    width: 50%;
+    padding: 5px;
+    margin-left: 25%;
+    border-radius: 10px;
+    color: #FF4B01;
+    font-weight: 600;
+}
+.pro-btn:hover{
+    border: 2px solid #FF4B01;
+    transition: 0.15s all ease-in-out;
+}
+
+/* .nav-item:after{position: absolute;
+    content: "";
+    height: 7%;
+    width: 0.5%;
+    margin-top: -0.2%;
+    background-color: #FF4B01;
+} */
+/* The switch - the box around the slider */
+/* .switch {
+    position: relative;
+    display: inline-block;
+    width: 90px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+/* .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+/* .slider { 
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 25px;
+    width: 40px;
+    left: 6px;
+    top: 4px;
+    bottom: 4px;
+    background-color: rgb(66, 91, 150);
+    -webkit-transition: .4s;
+    transition: .4s;
+} 
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(36px);
+    -ms-transform: translateX(36px);
+    transform: translateX(36px);
+}
+
+/* Rounded sliders 
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 34px;
+} */

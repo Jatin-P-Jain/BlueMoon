@@ -1,0 +1,195 @@
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+<div *ngIf="authError" class="" style=" position: absolute; height: 100%; width: 99%;">
+    <div class="alert alert-dark text-center" role="alert"
+        style="position: relative; top: 50%; left: 49.1%; width: 30%; transform: translate(-50%,-50%);">
+        {{ authErrorMessage }}
+    </div>
+</div>
+<div *ngIf="!authError" style="position: relative; height: 96vh;">
+    <div class="row" style="margin-bottom: 0% !important; font-size: 80%;">
+        <div class="col-2">
+            <div class="greetings">
+                Hello, {{userName}}
+            </div>
+            <div class="greeting-caption">
+                Have a nice day
+            </div>
+        </div>
+        <div class="col-2">
+        </div>
+        <div class="col-5">
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+            <div class="search ms-3 bg-white">
+                <span class="search-icon"><i class="bi bi-search"></i></span><input
+                    class="form-control me-2 search-input" type="search" placeholder="Search" aria-label="Search">
+            </div>
+            <div style="border-right: 2px solid #c2c2c2; width: 20%; display: inline-block;">
+                <button type="button" class=" notification position-relative ms-3">
+                    <i class="bi bi-bell" style="position: inherit; top: 5%;"></i>
+                    <span class="position-absolute p-1 bg-danger rounded-circle" style="left: 60%;top: 20%;"></span>
+                </button>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="account">
+                <div class="profile-pic"></div>
+                <div class="account-name align-middle">
+                    {{userName}}
+                    <div class="role">
+                        Admin
+                    </div>
+                </div>
+                <div class="dropdown-icon align-middle">
+                    <i class="bi bi-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin: 0% !important;">
+        <div class="col-10"></div>
+        <div class="col-2 text-end">
+            <a class="screen-options">Screen Options</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-5">
+            <div class="card shadow p-2 " style="padding: 5% 10%;">
+                <div class="card-body" style="width: 85%; margin: 0px auto;">
+                    <form [formGroup]="taskForm" (ngSubmit)="createTask()">
+                        <input class="form-control task-name-inp" type="text" placeholder="Task Name"
+                            formControlName="taskName">
+                        <div class="form-input-field">
+                            <input type="date" class="date-time-picker" formControlName="taskDate">
+                            <div class="date-icon" style="background-color: #d6a1ff4b;">
+                                <i class="bi bi-calendar-week"
+                                    style="color: #D6A1FF; font-size: 100%; position: absolute; top: 50%; left:50%; transform: translate(-50%,-50%);"></i>
+                            </div>
+                            <div class="date-text">
+                                {{ taskForm.value['taskDate'] | date:'fullDate' }}
+                            </div>
+                        </div>
+                        <div class="form-input-field">
+                            <input class="date-time-picker" #fromTime (change)="toTimePicker()" (focus)="clearTimer()"
+                                type="time" id="fromTime" style="width: 40%;" formControlName="fromTime">
+                            <input class="date-time-picker" id="toTime" type="time"
+                                style="width: 18% !important;left: 52%;" formControlName="toTime">
+                            <div #toTime onclick="toTime.showPicker()" hidden></div>
+                            <div class="date-icon" style="background-color: #ff5b7444;">
+                                <i class="bi bi-clock"
+                                    style="color: #FF5B74; font-size: 100%; position: absolute; top: 50%; left:50%; transform: translate(-50%,-50%);"></i>
+                            </div>
+                            <div class="date-text">
+                                <div #fromTimeText class="fromTime-text me-3" style="display: inline-block;">
+                                    {{ taskForm.value['fromTime'] }}
+                                </div>
+                                —
+                                <div #toTimeText class="toTime-text ms-3" style="display: inline-block;">
+                                    {{ taskForm.value['toTime'] }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-input-field">
+                            <div class="date-icon" style="background-color: #8b0e8b3f;">
+                                <i class="bi bi-chat-dots"
+                                    style="color: #8B0E8B; font-size: 100%; position: absolute; top: 50%; left:50%; transform: translate(-50%,-50%);"></i>
+                            </div>
+                            <div class="date-text">
+                                Remind me
+                            </div>
+                            <div class="remind-switch">
+                                <label class="switch-lg">
+                                    <input type="checkbox" formControlName="remind">
+                                    <span class="slider-lg round"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button class="task-create">Create Task</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-7">
+            <div class="card shadow">
+                <div class="card-body" style="max-height: 100vh;">
+                    <div class="row">
+                        <div class="col-10">
+                            {{ filterText }}
+                        </div>
+                        <div class="col-2">
+                            <!-- <i style="cursor: pointer;" class="bi bi-three-dots-vertical float-end"></i> -->
+                            <div class="dropdown">
+                                <!-- <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Dropdown button
+                                </button> -->
+                                <i style="cursor: pointer;" class="bi bi-three-dots-vertical float-end "
+                                    id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" (click)="filterTasks(null)">All tasks</a></li>
+                                    <li><a class="dropdown-item" (click)="filterTasks('Marked Completed')">Completed tasks</a></li>
+                                    <li><a class="dropdown-item" (click)="filterTasks('Mark As Complete')">Pending Tasks</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <div *ngIf="tasks['length']==0" class="alert alert-light text-center" role="alert">
+                            All Your Tasks Will Be Displayed Here.
+                        </div>
+                        <table *ngIf="tasks['length']!=0" class="table table-borderless text-center">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Task</th>
+                                    <th scope="col">Deadline</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let task of filteredTasks">
+                                    <td>{{ task.taskName }}</td>
+                                    <td style="color: #000080;">{{ task.taskDate | date:'dd MMMM y' | datesuffix }}</td>
+                                    <td><button class="action-btn" (click)="completeTask(task)"
+                                            [ngClass]="task.taskStatus=='Marked Completed'?'action-btn-disabled':''"
+                                            [disabled]="task.taskStatus=='Marked Completed'">{{ task.taskStatus
+                                            }}</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="status=='Success'" class="row" style="position: absolute; bottom: 0; right: 0; margin: 0px;">
+    <div class="col-9"></div>
+    <div class="col-3">
+        <div class="alert alert-success d-flex" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            <div>
+                {{ successMessage }}
+            </div>
+            <span class="bi bi-x text-muted fw-bolder" style="cursor: pointer; font-size: 200%;"
+                (click)="status=''"></span>
+        </div>
+    </div>
+</div>
+<div *ngIf="status=='Error'" class="row" style="position: absolute; bottom: 0; right: 0; margin: 0px;">
+    <div class="col-9"></div>
+    <div class="col-3">
+        <div class="alert alert-danger d-flex" role="alert">
+            <i class="bi bi-x-circle-fill me-2"></i>
+            <div>
+                {{ errorMessage }}
+            </div>
+            <span class="bi bi-x text-muted fw-bolder" style="cursor: pointer; font-size: 200%;"
+                (click)="status=''"></span>
+        </div>
+    </div>
+</div>
